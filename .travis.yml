@@ -1,0 +1,11 @@
+language: generic
+sudo: required
+services:
+    - docker
+
+# commands executed before tests are run
+before_install:
+    - docker build -t ci-cd-test -f Dockerfile.dev . 
+
+script:
+    - docker run -e CI=true ci-cd-test npm run test
